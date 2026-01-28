@@ -6,7 +6,6 @@ setInterval(() => console.log("HEARTBEAT:", new Date().toISOString()), 10000);
 require("dotenv").config();
 const { Client, GatewayIntentBits, EmbedBuilder } = require("discord.js");
 const fs = require("fs");
-const pLimit = require("p-limit").default;
 const express = require("express");
 
 const TOKEN = process.env.DISCORD_TOKEN;
@@ -95,15 +94,14 @@ async function runLoop(client) {
   const channel = await client.channels.fetch(CHANNEL_ID);
   if (!channel) throw new Error("Could not fetch channel. Check ALERT_CHANNEL_ID.");
 
-  const limit = pLimit(CONCURRENCY);
 
   console.log(`Monitoring ${targets.length} targets...`);
 
   const tick = async () => {
     try {
-      await Promise.all(
-        targets.map(t => limit(() => checkTarget(channel, t)))
-      );
+      for (const t of targets) {
+  await checkTarget(channel, t);
+}
       writeJson("./state.json", state);
     } catch (e) {
       console.error("Loop error:", e.message);
