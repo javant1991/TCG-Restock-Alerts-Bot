@@ -155,4 +155,6 @@ app.listen(PORT, "0.0.0.0", () => {
   console.log("Listening on", PORT);
 });
 
+console.log("DISCORD_TOKEN present?", !!TOKEN, "length=", TOKEN ? TOKEN.length : 0);
+
 client.login(TOKEN);
