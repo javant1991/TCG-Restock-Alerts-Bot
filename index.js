@@ -1,3 +1,8 @@
+console.log("BOOT: starting app...");
+process.on("unhandledRejection", (reason) => console.error("UNHANDLED REJECTION:", reason));
+process.on("uncaughtException", (err) => console.error("UNCAUGHT EXCEPTION:", err));
+setInterval(() => console.log("HEARTBEAT:", new Date().toISOString()), 10000);
+
 require("dotenv").config();
 const { Client, GatewayIntentBits, EmbedBuilder } = require("discord.js");
 const fs = require("fs");
