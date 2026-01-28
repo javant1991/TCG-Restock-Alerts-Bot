@@ -120,6 +120,7 @@ client.once("clientReady", () => { // ✅ removes warning (optional)
 // ===============================
 const app = express();
 app.use(express.json());
+app.get("/health", (req, res) => res.status(200).send("ok"));
 
 const PORT = process.env.PORT || 3000;
 
