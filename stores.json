@@ -1,0 +1,9 @@
+[
+  {
+    "name": "TEST ALERT",
+    "url": "https://example.com",
+    "inStockRegex": "example domain",
+    "outOfStockRegex": "zzzzzzzzzz"
+  }
+]
+
