@@ -153,7 +153,7 @@ app.post("/pokemoncenter/etb", async (req, res) => {
 });
 console.log("Starting webhook server...");
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log("Listening on", PORT);
 });
 
